@@ -3,12 +3,14 @@ import Banner from "../component/Banner";
 import Navbar from "../component/Navbar";
 import PopularProduct from "../component/PopularProduct";
 import Quality from "../component/Quality";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { authContext } from "../Provider/AuthProvider";
 
 
 const HomeLayout = () => {
-  const loadedCoffees=useLoaderData()
-  const [coffees,setCoffes]=useState(loadedCoffees)
+  const{coffees}=useContext(authContext)
+  // const loadedCoffees=useLoaderData()
+  // const [coffees,setCoffes]=useState(loadedCoffees)
   // console.log(loadedCoffees)
     return (
         <div>
@@ -19,7 +21,7 @@ const HomeLayout = () => {
           <main className="mt-10 ">
           <Banner></Banner>
           <Quality></Quality>
-          <PopularProduct coffees={coffees} setCoffes={setCoffes} ></PopularProduct>
+          <PopularProduct coffees={coffees}  ></PopularProduct>
           </main>
           <footer></footer>
         </div>

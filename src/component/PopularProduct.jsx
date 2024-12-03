@@ -5,7 +5,7 @@ import CardCoffee from "./CardCoffee";
 
 
 
-const PopularProduct = ({coffees,setCoffes}) => {
+const PopularProduct = ({coffees}) => {
  
 
     return (
@@ -17,7 +17,7 @@ const PopularProduct = ({coffees,setCoffes}) => {
             </div>
            <div className="grid gap-5 sm:grid-cols-2">
            {
-                coffees.map(coffee=><CardCoffee coffees={coffees} setCoffes={setCoffes}  key={coffee._id} coffee={coffee}></CardCoffee>)
+                coffees.map(coffee=><CardCoffee   key={coffee._id} coffee={coffee}></CardCoffee>)
             }
            </div>
         </div>

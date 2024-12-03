@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ImPriceTags } from 'react-icons/im';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { authContext } from '../Provider/AuthProvider';
 
-const CardCoffee = ({coffee,setCoffes,coffees}) => {
+const CardCoffee = ({coffee}) => {
+  const{coffees,setCoffees}=useContext(authContext)
     const {name,chef,price,photo,_id}=coffee
     const handleDelete=(_id)=>{
         
@@ -30,7 +32,7 @@ const CardCoffee = ({coffee,setCoffes,coffees}) => {
                         icon: "success"
                       });
                       const remainingCoffees=coffees.filter(coffee=>coffee._id !==_id)
-                      setCoffes(remainingCoffees)
+                      setCoffees(remainingCoffees)
                 }
               
                

@@ -1,13 +1,28 @@
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
+import { authContext } from "../Provider/AuthProvider";
 
 
 const Navbar = () => {
+    const [search,setSearch]=useState('')
+    const {setCoffees}=useContext(authContext)
+    console.log(search)
     const link = <>
         <Link to={'/users'}> <button className="btn">User</button> </Link>
         <Link to={'/signIn'}> <button className="btn"> SignIn</button> </Link>
         <Link to={'/signUp'}> <button className="btn">SignUp</button> </Link>
 
     </>
+
+    useEffect(()=>{
+        fetch(`http://localhost:5000/coffees?searchParams=${search}`)
+        .then(res=>res.json())
+        .then(data=>{
+            setCoffees(data)
+        })
+    },[search])
+
+   
     return (
 
         <div className="bg-NavbarImg h-[120px] bg-center flex justify-between px-2 items-center bg-cover">
@@ -16,7 +31,7 @@ const Navbar = () => {
                 <img src={'https://i.ibb.co.com/546SKkH/logo1.png'} alt="" className="sm:w-24 w-14" />
                 <h1 className="lg:text-6xl md:text-4xl text-xl font-bold text-white">Espresso Emporium</h1>
                 <label className="input input-bordered ml-2 bg-white flex items-center gap-2">
-                    <input type="text" className="grow" placeholder="Search" />
+                    <input onChange={(e)=>setSearch(e.target.value)} type="text" className="grow" placeholder="Search" />
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
